@@ -19,7 +19,7 @@ int main () {
     insereLista(5);
     insereLista(6);
     insereLista(7);
-    insereLista(8);
+    insereLista(15);
     insereLista(9);
     insereLista(10);
     insereLista(4);
@@ -38,9 +38,6 @@ int main () {
 
     recuperaLista(1);
 }
-
-// [ 1, 2 ,5, 6]   4
-// newNumPos 2
 
 void insereLista(int valor) {
     if(count == TAM-1) {
