@@ -39,3 +39,28 @@ void removeFila() {
         }
     }
 }
+
+void inicioFila() {
+    if(inicio == fim) {
+        cout << "Fila vazia!" << endl;
+    } else {
+        cout << "Inicio da fila: " << Fila[inicio] << endl;
+    }
+}
+
+void imprime() {
+    if(inicio == fim) {
+        cout << "Fila vazia!" << endl;
+    } else {
+        int i = inicio;
+        while(i != fim) {
+            cout << Fila[i] << " ";
+            if(i == TAM-1) {
+                i = 0;
+            } else {
+                i++;
+            }
+        }
+        cout << Fila[i] << endl;
+    }
+}
