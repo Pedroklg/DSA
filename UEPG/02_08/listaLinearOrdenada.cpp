@@ -65,10 +65,10 @@ void insereLista(int valor) {
 
 void recuperaLista(int posicao) {
     if ( posicao < 0 || posicao > count) {
-        cout << "Posição inválida!" << endl;
+        cout << "Posicao invalida!" << endl;
         return;
     }
-    cout << "Valor na posição " << posicao << ": " << Lista[posicao] << endl;
+    cout << "Valor na posicao " << posicao << ": " << Lista[posicao] << endl;
 }
 
 void removeLista(int posicao) {
