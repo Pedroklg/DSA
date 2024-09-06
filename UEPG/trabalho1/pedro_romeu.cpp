@@ -8,8 +8,8 @@ struct No {
     No* proximo;
 };
 
-No* cabeca = NULL;
-No* cauda = NULL;
+No* inicio = NULL;
+No* fim = NULL;
 
 void insereLista(int valor, int posicao);
 void removeValor(int valor);
@@ -46,24 +46,24 @@ void insereLista(int valor, int posicao) {
     novoNo->anterior = NULL;
     novoNo->proximo = NULL;
 
-    if (cabeca == NULL) {
-        cabeca = cauda = novoNo;
+    if (inicio == NULL) {
+        inicio = fim = novoNo;
         cout << "Valor inserido: " << valor << endl;
         return;
     }
 
     if (posicao == 0) {
-        novoNo->proximo = cabeca;
-        cabeca->anterior = novoNo;
-        cabeca = novoNo;
+        novoNo->proximo = inicio;
+        inicio->anterior = novoNo;
+        inicio = novoNo;
         cout << "Valor inserido no início: " << valor << endl;
         return;
     }
 
     if (posicao == 1) {
-        novoNo->anterior = cauda;
-        cauda->proximo = novoNo;
-        cauda = novoNo;
+        novoNo->anterior = fim;
+        fim->proximo = novoNo;
+        fim = novoNo;
         cout << "Valor inserido no final: " << valor << endl;
         return;
     }
@@ -73,22 +73,22 @@ void insereLista(int valor, int posicao) {
 }
 
 void removeValor(int valor) {
-    if (cabeca == NULL) {
+    if (inicio == NULL) {
         cout << "Lista vazia, nada a remover." << endl;
         return;
     }
 
-    No* temp = cabeca;
+    No* temp = inicio;
 
     while (temp != NULL) {
         if (temp->valor == valor) {
-            if (temp == cabeca) {
-                cabeca = temp->proximo;
-                if (cabeca != NULL) cabeca->anterior = NULL;
-                else cauda = NULL;
-            } else if (temp == cauda) {
-                cauda = temp->anterior;
-                if (cauda != NULL) cauda->proximo = NULL;
+            if (temp == inicio) {
+                inicio = temp->proximo;
+                if (inicio != NULL) inicio->anterior = NULL;
+                else fim = NULL;
+            } else if (temp == fim) {
+                fim = temp->anterior;
+                if (fim != NULL) fim->proximo = NULL;
             } else {
                 temp->anterior->proximo = temp->proximo;
                 temp->proximo->anterior = temp->anterior;
@@ -104,12 +104,12 @@ void removeValor(int valor) {
 }
 
 void imprime() {
-    if (cabeca == NULL) {
+    if (inicio == NULL) {
         cout << "Lista vazia" << endl;
         return;
     }
 
-    No* temp = cabeca;
+    No* temp = inicio;
     cout << "Conteudo da lista: ";
     while (temp != NULL) {
         cout << temp->valor << " ";
