@@ -11,87 +11,68 @@ struct No {
 No* cabeca = NULL;
 No* cauda = NULL;
 
-void inserirNaLista(int valor, int posicao);
-void removerValor(int valor);
-void imprimir();
+void insereLista(int valor, int posicao);
+void removeValor(int valor);
+void imprime();
 
 int main() {
-    inserirNaLista(10, 0);
-    inserirNaLista(20, 1);
-    inserirNaLista(30, 1);
-    imprimir();
+    insereLista(10, 0);
+    insereLista(20, 1);
+    insereLista(30, 1);
+    imprime();
 
-    removerValor(20);
-    imprimir();
+    removeValor(20);
+    imprime();
 
-    removerValor(40);
-    imprimir();
+    removeValor(40);
+    imprime();
 
-    inserirNaLista(40, 1);
-    inserirNaLista(50, 1);
-    imprimir();
+    insereLista(40, 1);
+    insereLista(50, 1);
+    imprime();
 
-    removerValor(10);
-    removerValor(50);
-    removerValor(30);
-    removerValor(40);
-    imprimir();
+    removeValor(10);
+    removeValor(50);
+    removeValor(30);
+    removeValor(40);
+    imprime();
 
     return 0;
 }
 
-void inserirNaLista(int valor, int posicao) {
-    if (posicao < 0) {
-        cout << "Posiaoo invalida!" << endl;
-        return;
-    }
-
+void insereLista(int valor, int posicao) {
     No* novoNo = new No();
     novoNo->valor = valor;
     novoNo->anterior = NULL;
     novoNo->proximo = NULL;
 
-    if (posicao == 0) {
-        if (cabeca == NULL) {
-            cabeca = cauda = novoNo;
-            cout << "Valor inserido: " << valor << endl;
-            return;
-        }
-        novoNo->proximo = cabeca;
-        cabeca->anterior = novoNo;
-        cabeca = novoNo;
+    if (cabeca == NULL) {
+        cabeca = cauda = novoNo;
         cout << "Valor inserido: " << valor << endl;
         return;
     }
 
-    No* temp = cabeca;
-    int contador = 0;
-
-    while (temp != NULL && contador < posicao - 1) {
-        temp = temp->proximo;
-        contador++;
-    }
-
-    if (temp == NULL) {
-        cout << "Posicao fora dos limites!" << endl;
-        delete novoNo;
+    if (posicao == 0) {
+        novoNo->proximo = cabeca;
+        cabeca->anterior = novoNo;
+        cabeca = novoNo;
+        cout << "Valor inserido no início: " << valor << endl;
         return;
     }
 
-    novoNo->proximo = temp->proximo;
-    novoNo->anterior = temp;
-
-    if (temp->proximo != NULL) {
-        temp->proximo->anterior = novoNo;
-    } else {
+    if (posicao == 1) {
+        novoNo->anterior = cauda;
+        cauda->proximo = novoNo;
         cauda = novoNo;
+        cout << "Valor inserido no final: " << valor << endl;
+        return;
     }
 
-    temp->proximo = novoNo;
-    cout << "Valor inserido: " << valor << endl;
+    cout << "Posicao invalida! Use 0 para inserir no início e 1 para o final." << endl;
+    delete novoNo;
 }
 
-void removerValor(int valor) {
+void removeValor(int valor) {
     if (cabeca == NULL) {
         cout << "Lista vazia, nada a remover." << endl;
         return;
@@ -122,7 +103,7 @@ void removerValor(int valor) {
     cout << "Valor nao encontrado: " << valor << endl;
 }
 
-void imprimir() {
+void imprime() {
     if (cabeca == NULL) {
         cout << "Lista vazia" << endl;
         return;
